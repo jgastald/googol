@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Googol Fight v0.1</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.css">
+
+
+
+
+</head>
+<body>
+
+
+    <div class="content container">
+
+        <section class="buttons section">
+            <div id="Botones">fsd</div>
+        </section>
+            
+        <button class="button is-secondary">Nueva Partida</button>
+
+        <section class="section">
+            <h5 class="title is-5">Jugadores</h5>
+            <ul id="jugadores" >
+            </ul>
+        </section>
+
+        <section class="section">
+            <h5>Instrucciones:</h5>
+            <p>
+                
+            </p>
+        </section>
+    </div>
+
+    
+    <script>
+        const CANT_NUMEROS  = 20;
+        const MAX           = 99999;
+        let jugadores       = ["jorge"]
+
+        function getRndInteger(min, max) {
+            return Math.floor(Math.random() * (max - min) ) + min;
+        }
+
+        function getJugadores() {
+            let resultado = "";
+            jugadores.forEach(j => {
+                resultado = `<li>${j}<li>`
+            });
+            return resultado;
+        }
+
+        function makeTemplate(data) {
+            let makeList= '';
+
+        }
+
+        function girar(btn, n) {
+            btn.innerHTML = n
+        }
+
+        function init() {
+            
+            let template = '';
+            for (let i = 0; i < CANT_NUMEROS; i++) {
+                let n = getRndInteger(1, MAX);
+                template += `<button class="button is-primary" onclick="girar(this, ${n})">    </button> `
+
+            }
+            document.getElementById('Botones').innerHTML = template;
+            document.getElementById('jugadores').innerHTML = getJugadores();
+        }
+
+    window.onload = init();
+</script>
+    
+</body>
+</html>
