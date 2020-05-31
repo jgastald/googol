@@ -1,0 +1,2 @@
+# googol
+The Googol Game
