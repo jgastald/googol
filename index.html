@@ -1,61 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Googol Fight v0.1</title>
-    
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.css">
 
 
-
-
 </head>
+
 <body>
 
 
     <div class="content container">
 
-        <section class="buttons section">
-            <div id="Botones">fsd</div>
-        </section>
-            
-        <button class="button is-secondary">Nueva Partida</button>
+        <div class="columns is-multiline">
 
-        <section class="section">
-            <h5 class="title is-5">Jugadores</h5>
-            <ul id="jugadores" >
-            </ul>
-        </section>
+            <div class="column is-two-thirds">
+                <section class="buttons section">
+                    <div id="Botones"></div>
+                </section>
+                <button class="button is-secondary">Nueva Partida</button>
+            </div>
 
-        <section class="section">
-            <h5>Instrucciones:</h5>
-            <p>
-                
-            </p>
-        </section>
+
+            <div class="column">
+                <section class="section">
+                    <div class="panel">
+                        <p class="panel-heading"> Jugadores </p>
+                        <div class="panel-block">
+                            <ul class="list is-hoverable" id="jugadores">
+                            </ul>
+                        </div>
+                        <div class="panel-block">
+                            <div class="field has-addons has-addons-centered">
+                                <p class="control">
+                                    <input id="nuevoJugador" class="input" type="text" placeholder="Nombre del Jugador">
+                                </p>
+                                <p class="control">
+                                    <button id="btnNuevoJugador" class="button is-primary" onclick="agregarJugador()">
+                                        Agregar </button>
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h5>Instrucciones:</h5>
+                    <p>
+                        1 - Seleccionar un boton
+
+                    </p>
+                </section>
+            </div>
+
+        </div>
+
     </div>
 
-    
+
+
+    <!--   ------------------------------------------------------------------------------------   -->
+
     <script>
-        const CANT_NUMEROS  = 20;
-        const MAX           = 99999;
-        let jugadores       = ["jorge"]
+        const CANT_NUMEROS = 20;
+        const MAX = 99999;
+        let jugadores = ["Jorge", "Silvana"];
+        let activo    = 0;
+
+        function $(id) {
+            return document.getElementById(id);
+        }
 
         function getRndInteger(min, max) {
-            return Math.floor(Math.random() * (max - min) ) + min;
+            return Math.floor(Math.random() * (max - min)) + min;
         }
 
         function getJugadores() {
             let resultado = "";
             jugadores.forEach(j => {
-                resultado = `<li>${j}<li>`
+                resultado += `<li id="j-${j}" class="list-item is-active">${j}</li>`
             });
             return resultado;
         }
 
         function makeTemplate(data) {
-            let makeList= '';
+            let makeList = '';
 
         }
 
@@ -64,7 +99,7 @@
         }
 
         function init() {
-            
+
             let template = '';
             for (let i = 0; i < CANT_NUMEROS; i++) {
                 let n = getRndInteger(1, MAX);
@@ -75,8 +110,17 @@
             document.getElementById('jugadores').innerHTML = getJugadores();
         }
 
-    window.onload = init();
-</script>
-    
+        function agregarJugador() {
+            jugadores.push($('nuevoJugador').value);
+            $('jugadores').innerHTML = getJugadores();
+            $('nuevoJugador').value="";
+
+        }
+
+
+        window.onload = init();
+    </script>
+
 </body>
+
 </html>
