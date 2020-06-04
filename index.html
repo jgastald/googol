@@ -8,8 +8,8 @@
     <title>Googol Fight v0.1</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.css">
-
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
+    
 </head>
 
 <body>
@@ -23,7 +23,6 @@
                 <section class="buttons section">
                     <div id="Botones"></div>
                 </section>
-                <button class="button is-secondary">Nueva Partida</button>
             </div>
 
 
@@ -32,13 +31,18 @@
                     <div class="panel">
                         <p class="panel-heading"> Jugadores </p>
                         <div class="panel-block">
-                            <ul class="list is-hoverable" id="jugadores">
-                            </ul>
+                            <button class="button is-secondary">Nueva Partida</button>
                         </div>
                         <div class="panel-block">
-                            <div class="field has-addons has-addons-centered">
+                            <div class="" id="jugadores">
+
+                            </div>
+                        </div>
+                        <div class="panel-block">
+                            <div class="field has-addons">
                                 <p class="control">
                                     <input id="nuevoJugador" class="input" type="text" placeholder="Nombre del Jugador">
+                                    
                                 </p>
                                 <p class="control">
                                     <button id="btnNuevoJugador" class="button is-primary" onclick="agregarJugador()">
@@ -84,7 +88,15 @@
         function getJugadores() {
             let resultado = "";
             jugadores.forEach(j => {
-                resultado += `<li id="j-${j}" class="list-item is-active">${j}</li>`
+                resultado +=  '<div class="field has-addons">' +
+                                // `<li id="j-${j}" class="list-item is-active">${j}</li>` +
+                                    '<div class="control">' +
+                                        `<input readonly type="text" id="j-${j}" class="input is-static" value="${j}"></input>` +
+                                    '</div>' +                                        
+                                    '<div class="control">' +
+                                        '<button class="button is-info"> <i class="fas fa-trash"></i> </button>' +
+                                    '</div>' +
+                               '</div>'
             });
             return resultado;
         }
