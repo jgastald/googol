@@ -87,9 +87,20 @@
 
         function getJugadores() {
             let resultado = "";
-            jugadores.forEach(j => {
+
+
+            jugadores.forEach(function(j, index) {
+             //   texto = j;
+             //   alert (index);
+                let j_activo = '';
+                if ( index == activo ) { 
+                    j_activo = '<i class="fas fa-star"></i>';
+                }
                 resultado +=  '<div class="field has-addons">' +
                                 // `<li id="j-${j}" class="list-item is-active">${j}</li>` +
+                                    '<div class="control">' +
+                                        j_activo +
+                                    '</div>' +
                                     '<div class="control">' +
                                         `<input readonly type="text" id="j-${j}" class="input is-static" value="${j}"></input>` +
                                     '</div>' +                                        
@@ -107,7 +118,15 @@
         }
 
         function girar(btn, n) {
-            btn.innerHTML = n
+            btn.innerHTML = n;
+
+            if (activo < jugadores.length-1) {
+                activo += 1;
+            } else {
+                activo = 0;
+            }
+
+            $('jugadores').innerHTML = getJugadores();
         }
 
         function init() {
